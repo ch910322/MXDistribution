@@ -1,0 +1,29 @@
+remote procedure DOLUpdShopifyStock(string);
+
+global
+updating procedure DOLShopifySendStockSm()
+begin
+  
+  DOLUpdShopifyStock(CurrentCompany & ";*");
+
+  return;
+end;
+
+global
+procedure DOLUpdItemStockDsm()
+begin
+  record INVc INr;
+  integer wn;
+  
+  wn = CurWindow;
+
+  DeselectWindow(wn,false);
+  if (WindowState(wn) == Rs_normal) then begin
+    GetWindowRecord(wn,INr);
+    DOLUpdShopifyStock(CurrentCompany & ";" & Inr.Code);
+  end else begin
+    beep;
+  end;
+
+  return;
+end;
