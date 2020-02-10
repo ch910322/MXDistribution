@@ -1,0 +1,11 @@
+//<halrule>server-only</halrule>
+external procedure PeriodicWebTasksInit();
+
+global
+updating procedure OnApplicationStartupComplete()
+begin
+  
+  inner.OnApplicationStartupComplete;
+  PeriodicWebTasksInit;
+  return;
+end;
