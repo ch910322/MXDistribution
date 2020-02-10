@@ -14,6 +14,8 @@ begin
   return;
 end;
 
+external inner function real VATZoneButtonsLabelsLAT(real,real,real,real);
+
 window ShopifyNewCustTClass:1
   wtag("language","LAT"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
 begin
@@ -35,6 +37,9 @@ begin
   EditField(h=100,v+=vs,150,"VATNr",Normal,VATNr,false,0);
   EditField(h=100,v+=vs,150,"RegNr1",Normal,RegNr1,false,0);
   EditField(h=100,v+=vs,150,"PayDeal",Normal,PayDeal,false,PDSClass);
+
+  CheckBox(h,v+=vs,0,"Force VAT Zone",ForceVATZone);
+  VATZoneButtonsLabelsLAT(h,v+=40,150,16);
 
   EndWindow;
 

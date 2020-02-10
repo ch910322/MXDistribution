@@ -72,6 +72,8 @@ begin
   RecordField(CustLangDOM,M4Code,20,0);
   RecordField(CustLangEU,M4Code,20,0);
   RecordField(CustLangEXP,M4Code,20,0);
+  RecordField(ForceVATZone,M4Int,0,0);
+  RecordField(ExportFlag,M4Int,0,0);
 	EndBlock;
 
   return;

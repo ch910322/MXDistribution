@@ -417,7 +417,10 @@ begin
 			CUr.CustType = 0;
 		end;*/
 
-    // ARA: HAL-1145
+    if (SNCb.ForceVATZone>0) then begin
+      CUr.ExportFlag = SNCb.ExportFlag;
+    end;
+
 		switch(CUr.ExportFlag)begin
 			case 0:CUr.CustCat = SNCb.CustCatDOM; CUr.LangCode = SNCb.CustLangDOM;
 			case 1:CUr.CustCat = SNCb.CustCatEU; CUr.LangCode = SNCb.CustLangEU;
@@ -425,8 +428,6 @@ begin
 			case 3:CUr.CustCat = SNCb.CustCatEU; CUr.LangCode = SNCb.CustLangEU;
 			case 4:CUr.CustCat = SNCb.CustCatEXP; CUr.LangCode = SNCb.CustLangEXP;
 		end;
-    // :ARA
-
 	
 		acclang = JSONGet(jdata,"orders/[" & order & "]/client_details/accept_language");
 		acclang = acclang & "," & JSONGet(jdata,"orders/[" & order & "]/customer_locale");
@@ -601,6 +602,7 @@ begin
             addshipartcodef = true;
           end;
 */
+          addshipartcodef = true;
           if (JSONNodeExists(jdata,"orders/[" & i & "]/shipping_lines/[" & 0 & "]/title")) then begin
             shippingline = JSONGet(jdata,"orders/[" & i & "]/shipping_lines/[" & 0 & "]/title");
             DMr.Code = DOLShopifyBl.StoreShipMode;
