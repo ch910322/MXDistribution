@@ -24,7 +24,8 @@ begin
   RecordField(DeliveryAfter,M4Int,0,0);
   RecordField(DefArtCode,M4Code,20,INVc);
   RecordField(StoreShipMode,M4Code,5,0); 
-  RecordField(DelArtCode,M4Code,20,INVc); 
+  RecordField(DelArtCode,M4Code,20,INVc);
+  RecordField(IncludeOpenOrders,M4Int,0,0); 
   EndBlock;
   	
 	

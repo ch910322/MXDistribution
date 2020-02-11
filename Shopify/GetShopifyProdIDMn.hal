@@ -164,10 +164,17 @@ begin
 										if(locfl[ISr.Location])then begin
 											if(invarb[ISr.Code & ISr.Variety])then begin
 												invarqty[ISr.Code & ISr.Variety] = invarqty[ISr.Code & ISr.Variety] + ISr.Instock;
+                        if (DOLShopifyBl.IncludeOpenOrders==1) then begin
+                          invarqty[ISr.Code & ISr.Variety] = invarqty[ISr.Code & ISr.Variety] - ISr.OrddOut;
+                        end;
 											end else begin
 												invar[arcnt] = ISr.Code & ISr.Variety;
 												invarb[invar[arcnt]] = true;
-												invarqty[invar[arcnt]] = ISr.Instock;
+												invarqty[invar[arcnt]] = ISr.Instock - ISr.OrddOut;
+                        if (DOLShopifyBl.IncludeOpenOrders==1) then begin
+                          invarqty[invar[arcnt]] = invarqty[invar[arcnt]] - ISr.OrddOut;
+                        end;
+
 												arcnt = arcnt + 1;
 											end;
 										end;
@@ -632,14 +639,12 @@ begin
             k = k + 1;
           end;
 
-          // ARA: HAL-1145
           if (CUr.CustType == 1 and ORr.ExportFlag == 1) then begin
             ORr.ExportFlag = 3;
           end;
           if (CUr.CustType == 1 and ORr.ExportFlag == 2) then begin
             ORr.ExportFlag = 4;
           end;
-          // :ARA
 
           switch(ORr.ExportFlag)begin
             case 0:ORr.LangCode = SNCb.CustLangDOM & ORr.ShipMode;
@@ -648,10 +653,11 @@ begin
             case 3:ORr.LangCode = SNCb.CustLangEU & ORr.ShipMode;
             case 4:ORr.LangCode = SNCb.CustLangEXP & ORr.ShipMode;
           end;
-          // :ARA
           
           ORr.SerNr = NextSerNr("ORVc",ORr.OrdDate,-1,false,"");   
-          RecordStore(ORr,true);
+          if (RecordInsert(ORr,true)==false) then begin
+            Logtext(0,"Failed to store shopify order " & RecordCheckLastErrorNo);
+          end;
         end;
       end;
       
