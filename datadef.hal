@@ -5,6 +5,7 @@ begin
   SourceFile("halcust\\Shopify\\Level0\\Tools",0);  
 
   SourceFile("halcust\\Level0\\Tools",0);  
+  SourceFile("halcust\\Latvian",0);  
 
   return;
 end;
