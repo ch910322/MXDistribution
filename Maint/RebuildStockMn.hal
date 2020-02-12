@@ -1,0 +1,12 @@
+//<halrule>server-only</halrule>
+global
+updating procedure RebuildStockMn(record RcVc RepSpec)
+begin
+  transaction string 255 gRuniningMaint;
+  gRuniningMaint = "RebuildStockMn";
+
+  inner.RebuildStockMn(RepSpec);
+  gRuniningMaint = "";
+
+  return;
+end;

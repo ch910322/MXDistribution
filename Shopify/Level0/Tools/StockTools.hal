@@ -202,10 +202,14 @@ LUpdateInstock:;
 //CUST-BEGIN
   begin
     record DOLShopifyBlock DOLShopifyBl;
-  
+    transaction string 255 gRuniningMaint;
+
     BlockLoad(DOLShopifyBl);
-    if (location == ";;;" and DOLShopifyBl.UpdStockAlways == 1 and filename != "StockMovVc" and !ImportingTextBackup and !IsMaintenance) then begin
-      DOLUpdShopifyStock(CurrentCompany & ";" & ac);
+    if (location == ";;;" and DOLShopifyBl.UpdStockAlways == 1 and filename != "StockMovVc" and !ImportingTextBackup) then begin
+      
+      if (!IsMaintenance or gRuniningMaint!="RebuildStockMn") then begin
+        DOLUpdShopifyStock(CurrentCompany & ";" & ac);
+      end;
     end;
   end;
 //CUST-END

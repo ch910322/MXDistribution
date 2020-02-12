@@ -6,6 +6,7 @@ begin
 
   SourceFile("halcust\\Level0\\Tools",0);  
   SourceFile("halcust\\Latvian",0);  
+  SourceFile("halcust\\Maint",3);  
 
   return;
 end;
