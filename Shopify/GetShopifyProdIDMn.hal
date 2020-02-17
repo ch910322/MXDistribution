@@ -157,13 +157,13 @@ Logtext(0,"DOLUpdShopifyStockStructuredItems3 " & qty & ":" & minqty);
       if (INr.Recepy!=Recr.Code) then begin
         TrHs = false;
       end else begin
-Logtext(0,"DOLUpdShopifyStockStructuredItems4 ");  
+Logtext(0,"DOLUpdShopifyStockStructuredItems4 " & INr.Code);  
         if (INr.ItemType==kItemTypeStructured) then begin
 Logtext(0,"DOLUpdShopifyStockStructuredItems5");  
           SPr.SKU = INr.Code;
           setareazerosize(request);
           if (ReadFirstKey("SKU",SPr,1,true))then begin
-Logtext(0,"DOLUpdShopifyStockStructuredItems6");  
+Logtext(0,"DOLUpdShopifyStockStructuredItems6 " & SPr.Vinvent_id & ":" & INr.Code);  
             addtexttoarea("{\"location_id\":" & DOLShopifyBl.ShpifyLocId & "," & chr(13) & chr(10),request);
             addtexttoarea("\"inventory_item_id\":" & SPr.Vinvent_id & "," & chr(13) & chr(10),request);
             addtexttoarea("\"available\":" & minqty & "}" & chr(13) & chr(10),request);
