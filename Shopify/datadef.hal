@@ -26,6 +26,7 @@ begin
   RecordField(StoreShipMode,M4Code,5,0); 
   RecordField(DelArtCode,M4Code,20,INVc);
   RecordField(IncludeOpenOrders,M4Int,0,0); 
+  RecordField(UpdateStructuredItems,M4Int,0,0); 
   EndBlock;
   	
 	
@@ -76,6 +77,12 @@ begin
   RecordField(ForceVATZone,M4Int,0,0);
   RecordField(ExportFlag,M4Int,0,0);
 	EndBlock;
+
+  RecordAddBegin(RecVc,"ShopifyRecVc");
+  SubsetKeyBegin2(Item);
+  AppendMatrixFieldToKeyName(Item,0);
+  KeySegment(Code);
+  EndRecordAdd;
 
   return;
 end;
