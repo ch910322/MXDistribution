@@ -132,11 +132,10 @@ begin
   area request;
   record INVc INr;
   Boolean TrHs,firstf;
+  Integer iqty;
 
-Logtext(0,"DOLUpdShopifyStockStructuredItems1");  
   
   while (LoopKey("Item:" & item,Recr,1,true)) begin
-Logtext(0,"DOLUpdShopifyStockStructuredItems2 " & Recr.Code);  
     rwcnt = MatRowCnt(Recr);
     minqty = 0;
     firstf = true;
@@ -147,7 +146,6 @@ Logtext(0,"DOLUpdShopifyStockStructuredItems2 " & Recr.Code);
         minqty = qty;
         firstf = false;
       end;
-Logtext(0,"DOLUpdShopifyStockStructuredItems3 " & qty & ":" & minqty);  
     end;
     TrHs = true;
     ResetLoop(INr);
@@ -157,16 +155,14 @@ Logtext(0,"DOLUpdShopifyStockStructuredItems3 " & qty & ":" & minqty);
       if (INr.Recepy!=Recr.Code) then begin
         TrHs = false;
       end else begin
-Logtext(0,"DOLUpdShopifyStockStructuredItems4 " & INr.Code);  
         if (INr.ItemType==kItemTypeStructured) then begin
-Logtext(0,"DOLUpdShopifyStockStructuredItems5");  
           SPr.SKU = INr.Code;
           setareazerosize(request);
           if (ReadFirstKey("SKU",SPr,1,true))then begin
-Logtext(0,"DOLUpdShopifyStockStructuredItems6 " & SPr.Vinvent_id & ":" & INr.Code);  
             addtexttoarea("{\"location_id\":" & DOLShopifyBl.ShpifyLocId & "," & chr(13) & chr(10),request);
             addtexttoarea("\"inventory_item_id\":" & SPr.Vinvent_id & "," & chr(13) & chr(10),request);
-            addtexttoarea("\"available\":" & minqty & "}" & chr(13) & chr(10),request);
+            iqty = minqty;
+            addtexttoarea("\"available\":" & iqty & "}" & chr(13) & chr(10),request);
             DOLMakeWebRequestAsync("POST","/admin/inventory_levels/set.json",request);
             MilliSleep(700);
           end;
