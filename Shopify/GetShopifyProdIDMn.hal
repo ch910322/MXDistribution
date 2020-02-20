@@ -251,7 +251,7 @@ begin
 											end else begin
 												invar[arcnt] = ISr.Code & ISr.Variety;
 												invarb[invar[arcnt]] = true;
-												invarqty[invar[arcnt]] = ISr.Instock - ISr.OrddOut;
+												invarqty[invar[arcnt]] = ISr.Instock;
                         if (DOLShopifyBl.IncludeOpenOrders==1) then begin
                           invarqty[invar[arcnt]] = invarqty[invar[arcnt]] - ISr.OrddOut;
                         end;
