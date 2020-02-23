@@ -207,7 +207,7 @@ LUpdateInstock:;
     BlockLoad(DOLShopifyBl);
     if (location == ";;;" and DOLShopifyBl.UpdStockAlways == 1 and filename != "StockMovVc" and !ImportingTextBackup and (q!=0 or o!=0)) then begin
       if (!IsMaintenance or gRuniningMaint!="RebuildStockMn") then begin
-        logtext(0,"updating shop stock IsMaintenance=" & IsMaintenance);
+        logtext(0,"updating shop stock IsMaintenance=" & IsMaintenance & ":" & ac & ":" & o);
         NewTimedTask2("Quick DOLUpdShopifyStock " & ac & " " & GetCurTick,"Quick DOLUpdShopifyStock " & ac & " " & GetCurTick,"DOLUpdShopifyStock",CurrentCompany & ";" & ac,CurrentDate,AddSeconds(CurrentTime,5),"","");
       end;
     end;
