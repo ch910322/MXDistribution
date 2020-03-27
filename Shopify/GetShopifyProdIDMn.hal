@@ -493,7 +493,7 @@ LDOLGetShopifyProdIDMn_Nextpage:;
       
       jdata = ParseJSONArea(a_reply);
       
-      while (GetAreaLength(a_reply) > 0 and JSONNodeExists(jdata,"products/[0]/id") and loopc < 100) begin // 25000 items max; to avoid infinite loop
+      if (GetAreaLength(a_reply) > 0 and JSONNodeExists(jdata,"products/[0]/id")) begin // 25000 items max; to avoid infinite loop
         //logtext(0,"Begin to parse " & JSONNodeExists(jdata,"products/[" & i & "]/id"));
         i = 0;
         while (JSONNodeExists(jdata,"products/[" & i & "]/id")) begin
