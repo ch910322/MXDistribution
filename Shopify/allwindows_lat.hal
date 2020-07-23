@@ -77,6 +77,8 @@ begin
   CheckBox(h,v+=vs,0,"Update Stock Levels when Stock level Changes",UpdStockAlways);
   CheckBox(h,v+=vs,0,"Include Open Orders",IncludeOpenOrders);  
   CheckBox(h,v+=vs,0,"Update Stock Levels for Structured Items",UpdateStructuredItems);  
+  CheckBox(h,v+=vs,0,"Update only OK Sales Orders",OnlyOKOrd);  
+  
   //CheckBox(h,v+=20,0,"Update Price When Item is Updated",UpdPriceAlways); // EVS: DOL-167
   EndFrame;
   Tile(3,120,true,"",SaveReqResp);

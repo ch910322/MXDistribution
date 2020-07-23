@@ -884,6 +884,21 @@ LDOLGetShopifyOrdersMn_Nextpage:;
 end;
 
 global
+function Boolean ShopifyUpdateORStock(record ORVc ORr)
+begin
+  record DOLShopifyBlock DOLShopifyBl;
+  Boolean res;
+  
+  BlockLoad(DOLShopifyBl);
+  if (DOLShopifyBl.OnlyOKOrd==0 or ORr.OKFlag==1) then begin
+    res = true;
+  end;
+
+  ShopifyUpdateORStock = res;
+  return;
+end;
+
+global
 updating procedure UpdateShopifyBlockOrders()
 begin
   record DOLShopifyBlock DOLShopifyBl;

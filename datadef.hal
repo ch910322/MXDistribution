@@ -3,6 +3,7 @@ begin
   Exec_File("halcust\\Shopify\\datadef.hal");
   SourceFile("halcust\\Shopify",3);  
   SourceFile("halcust\\Shopify\\Level0\\Tools",0);  
+  SourceFile("halcust\\Shopify\\Level0\\RActions",0);  
   SourceFile("halcust\\Shopify\\Maint",3); //for rebuild stock maint 
 
   SourceFile("halcust\\Level0\\Tools",0);  

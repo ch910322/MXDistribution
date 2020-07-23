@@ -27,6 +27,7 @@ begin
   RecordField(DelArtCode,M4Code,20,INVc);
   RecordField(IncludeOpenOrders,M4Int,0,0); 
   RecordField(UpdateStructuredItems,M4Int,0,0); 
+  RecordField(OnlyOKOrd,M4Int,0,0); 
   EndBlock;
   	
 	
